@@ -1,0 +1,182 @@
+.headerStyle{
+    background-color: #D4DFF0;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.titleStyle {
+    padding: 10px;
+    color: #18364B;
+    margin-top: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+.paragraph{
+    display: flex;
+    justify-content: space-around;
+}
+
+.dropDownStyle{
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 16px;
+    margin-right: 20px;
+    font-weight: 500;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding-top: 10px;
+}
+.aboutMeStyle{
+    font-size: 18px;
+    padding-top: 10px;
+    font-weight: 500;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding-left: 10px;
+}
+.shoppingCart{
+    font-size: 29px;
+}
+.shoppingCartBox{
+    height: 29px;
+    margin-left:10px;
+    margin-top: 10px;
+}
+.appContent{
+    width: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+.cardProducts{
+    width: 250px;
+    margin:15px;
+}
+.btnShopping{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+.imageCarousel{
+    width: 100%;
+    border-radius: 30px;
+}
+.detailsCommon{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    /* align-items: center; */
+}
+.imgBox{
+    width: 33.3333%;
+    padding-left: 10px;
+}
+.infoBox{
+    width: 69.99999%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: flex-start;
+    
+}
+.headerDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    box-shadow: -28px -11px 56px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -28px -11px 56px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: -28px -11px 56px -15px rgba(0,0,0,0.75);
+
+}
+.btnBox{
+    width: 33.33333%;
+}
+.DetailsProduct{
+    width: 69.33333%;
+    display: flex;
+    justify-content: center;
+}
+.titleBox{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.categoryBox{
+    display: flex;
+    justify-content: flex-start;
+    text-align: left!important;
+    padding-left: 15px;
+}
+.cartCommon{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.imgDiv{
+    width: 33.3333%;
+}
+.imgDiv img{
+    width: 100%;
+    border-radius: 10px;
+}
+.paragraphDiv{
+    width: 66.6666%;
+    padding-left: 10px;
+}
+.incrementDecrement{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.incrementBtn{
+    margin: 5px;
+}
+.decrementBtn{
+    margin: 5px;
+}
+.countCart{
+    text-align: center;
+    margin-top: 10px;
+}
+.priceType{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+.cartApp{
+    display: flex;
+    justify-content: center;
+}
+.removeBtn{
+    margin-bottom: 10px;
+}
+.drawerApp{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+}
+.buyCart{
+    width: 79%;
+    background-color: white;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    padding: 10px;
+    text-align:center;
+}
+.buyProducts{
+    padding: 10px 4px;
+}
+.countCart{
+    padding: 0 10px;
+}
+.infoCart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

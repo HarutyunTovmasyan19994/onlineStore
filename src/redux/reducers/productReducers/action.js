@@ -1,0 +1,6 @@
+export const PRODUCT_SENT = "PRODUCT_SENT"
+export const PRODUCT_SENT_SUCCESS = "PRODUCT_SENT_SUCCESS"
+
+
+
+
