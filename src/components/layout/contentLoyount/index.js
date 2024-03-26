@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {ShoppingCartOutlined} from "@ant-design/icons";
 import AppCarousel from "./carusel";
 import {Link} from "react-router-dom";
-import {PRODUCT_CART} from "../../../redux/reducers/cartReducers/action"
+import {PRODUCT_CART,PRODUCT_CART_DATA} from "../../../redux/reducers/cartReducers/action"
 import{PRODUCT_CART_TOTAL_PRICE} from "../../../redux/reducers/cartReducers/action"
 import "../styles/hedaerLayoutStyle.css"
 

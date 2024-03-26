@@ -8,13 +8,22 @@ import {
 
 const initialCartState = {
   cart: [],
+  cartData:[],
   totalCount: 0,
 };
 
 const cartReducers = (state = initialCartState, action) => {
   switch (action.type) {
-    case PRODUCT_CART:
-      return { ...state, cart: [...state.cart, action.payload] };
+    case PRODUCT_CART:{ 
+      const positioanThisProductInCart = state.cart.findIndex(val=>val.id === action.payload.id)
+      if(state.cart.length <=0){
+        return{...state,cart:[...state.cart,action.payload]}
+      }else if(positioanThisProductInCart <0){
+        return{...state,cart:[...state.cart,action.payload]}
+      }else{
+       state.cart[positioanThisProductInCart].count = state.cart[positioanThisProductInCart].count +1
+      }
+    };
     case PRODUCT_CART_ICREMENT:
       return {
         ...state,

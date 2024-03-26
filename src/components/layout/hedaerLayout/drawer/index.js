@@ -10,7 +10,7 @@ import {
 import { DeleteFilled } from "@ant-design/icons";
 
 const DrawerApp = ({ onClose, open }) => {
-  const { cart, totalCount } = useSelector((state) => state.cart);
+  const { cart, totalCount,cartData } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const incrementHandle = (id, text) => {
@@ -31,7 +31,16 @@ const DrawerApp = ({ onClose, open }) => {
   if(cart.length === 0){
     onClose()
   }
-  console.log(totalCount, "cart");
+
+  useEffect(()=>{
+    cart.map(val=>{
+      console.log(val,"val");
+      if(val.count < 1){
+        dispatch({ type: PRODUCT_CART_REMOVE, payload: val.id });
+      }
+    })
+  }, [cart])
+  
   return (
     <Drawer
       title="Cart Products"
@@ -81,7 +90,20 @@ const DrawerApp = ({ onClose, open }) => {
         </div>
       ))}
       <div className="buyCart">
-        <div className="infoCart">
+       
+        <Button classNames="buyProducts" type="primary" onClick={onClose}>
+          Buy
+        </Button>
+      </div>
+    </Drawer>
+  );
+};
+
+export default DrawerApp;
+
+
+
+/** <div className="infoCart">
           <div>
             <Typography.Paragraph>
               Subtatal 
@@ -104,13 +126,4 @@ const DrawerApp = ({ onClose, open }) => {
               {totalCount + 250 }
             </Typography.Paragraph>
           </div>
-        </div>
-        <Button classNames="buyProducts" type="primary" onClick={onClose}>
-          Buy
-        </Button>
-      </div>
-    </Drawer>
-  );
-};
-
-export default DrawerApp;
+        </div> */
