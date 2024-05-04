@@ -6,11 +6,12 @@ import {
   PRODUCT_CART_DECREMENT,
   PRODUCT_CART_REMOVE,
   PRODUCT_CART_TOTAL_PRICE,
+  PRODUCT_CART_POPUP,
 } from "../../../../redux/reducers/cartReducers/action";
 import { DeleteFilled } from "@ant-design/icons";
 
 const DrawerApp = ({ onClose, open }) => {
-  const { cart, totalCount,cartData } = useSelector((state) => state.cart);
+  const { cart, totalCount } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const incrementHandle = (id, text) => {
@@ -28,19 +29,24 @@ const DrawerApp = ({ onClose, open }) => {
     dispatch({ type: PRODUCT_CART_TOTAL_PRICE });
   };
 
-  if(cart.length === 0){
+
+  const handleBtn =()=>{
+    dispatch({type:PRODUCT_CART_POPUP,payload:true})
     onClose()
+
   }
 
   useEffect(()=>{
-    cart.map(val=>{
-      console.log(val,"val");
+    cart.map(val => {
       if(val.count < 1){
         dispatch({ type: PRODUCT_CART_REMOVE, payload: val.id });
       }
     })
+    if(cart.length === 0){
+    onClose()
+  }
   }, [cart])
-  
+
   return (
     <Drawer
       title="Cart Products"
@@ -90,40 +96,21 @@ const DrawerApp = ({ onClose, open }) => {
         </div>
       ))}
       <div className="buyCart">
-       
-        <Button classNames="buyProducts" type="primary" onClick={onClose}>
+          <Typography.Paragraph>
+            Total Price :
+            {" "}
+            {totalCount}
+            {" "}
+            $
+          </Typography.Paragraph>
+
+        <Button classNames="buyProducts" type="primary" onClick={handleBtn}>
           Buy
         </Button>
+
       </div>
     </Drawer>
   );
 };
 
 export default DrawerApp;
-
-
-
-/** <div className="infoCart">
-          <div>
-            <Typography.Paragraph>
-              Subtatal 
-            </Typography.Paragraph>
-            <Typography.Paragraph>
-             Delivery fee 
-            </Typography.Paragraph>
-            <Typography.Paragraph>
-              Total 
-            </Typography.Paragraph>
-          </div>
-          <div>
-            <Typography.Paragraph>
-             {totalCount}
-            </Typography.Paragraph>
-            <Typography.Paragraph>
-              250 $
-            </Typography.Paragraph>
-            <Typography.Paragraph>
-              {totalCount + 250 }
-            </Typography.Paragraph>
-          </div>
-        </div> */

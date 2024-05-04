@@ -21,6 +21,8 @@ import { LOCATION_CHANGE } from "connected-react-router";
 import { matchPath } from "react-router";
 import { getRouteConfig } from "../../../router";
 import { MAIN_ROUTE, PRODUCTS_DETAILS_ROUTE } from "../../../router/action";
+import {FILTER_BY_PRICE,FILTER_BY_MAX_MINI_PRICE,FILTER_BY_TITLE} from "../../reducers/filterReducer/action"
+
 
 export function* loadProductDetails({ payload }) {
   const { id } = payload;
@@ -44,29 +46,49 @@ export function* loadProductList() {
   const data = yield apply(response, response.json);
   yield put({ type: PRODUCT_SENT_SUCCESS, payload: data });
 }
+
+
 export function* loadProductCategory() {
   const { id } = yield select((state) => state.category);
   const { product } = yield select((state) => state.app);
-  console.log(id, "idCategory");
   const request = yield call(
     fetch,
     `https://api.escuelajs.co/api/v1/categories/${id}`
   );
   const data = yield apply(request, request.json);
-  console.log(data.name, "77777");
 
+  // eslint-disable-next-line array-callback-return
   const categoryState = product.filter((items) => {
-    // console.log(items,"items");
     if (items.category.name === data.name) {
-        console.log(items,"4598787");
       return items;
     }
   });
-  console.log(categoryState, "151515");
   yield put({ type: PRODUCT_SENT_SUCCESS, payload: categoryState });
 }
 
-export function* routeChangeSaga() {
+export function* filterByPrice (){
+  const  {serchPrice}  = yield select((state) => state.filter);
+   const request = yield call(fetch,
+  `https://api.escuelajs.co/api/v1/products/?price=${serchPrice}`)
+  const data = yield apply(request,request.json)
+  yield put({ type: PRODUCT_SENT_SUCCESS, payload: data });
+}
+export function* filterByMaxMiniPrice (){
+  const  {miniMaxPrice}  = yield select((state) => state.filter);
+  const request = yield call(fetch,
+  `https://api.escuelajs.co/api/v1/products/?price_min=${miniMaxPrice.miniPrice}&price_max=${miniMaxPrice.maxPrice}`)
+  const data = yield apply(request,request.json)
+  yield put({ type: PRODUCT_SENT_SUCCESS, payload: data });
+}
+export function* filterByTitle (){
+  const  {searchTitle}  = yield select((state) => state.filter);
+  const request = yield call(fetch,
+  `https://api.escuelajs.co/api/v1/products/?title=${searchTitle}`)
+  const data = yield apply(request,request.json)
+  yield put({ type: PRODUCT_SENT_SUCCESS, payload: data });
+}
+
+ export function* routeChangeSaga() {
   while (true) {
     const action = yield take(LOCATION_CHANGE);
     const state = yield select((state) => state.app);
@@ -95,16 +117,14 @@ export function* routeChangeSaga() {
       }
     }
   }
-}
+ }
 export default function* productSaga() {
   yield fork(routeChangeSaga);
   yield takeEvery(PRODUCT_SENT, loadProductList);
   yield takeEvery(PRODUCT_DETAILS, loadProductDetails);
   yield takeEvery(PRODUCT_CATEGORY_CLOTHES, loadProductCategory);
+  yield takeEvery(FILTER_BY_PRICE,filterByPrice)
+  yield takeEvery(FILTER_BY_MAX_MINI_PRICE,filterByMaxMiniPrice)
+  yield takeEvery(FILTER_BY_TITLE,filterByTitle)
 }
 
-/* PRODUCT_CATEGORY_CLOTHES,
-  PRODUCT_CATEGORY_ELECTRONICS,
-  PRODUCT_CATEGORY_FURNITURE,
-  PRODUCT_CATEGORY_MISCELLANEOUS,
-  PRODUCT_CATEGORY_SHOES, */

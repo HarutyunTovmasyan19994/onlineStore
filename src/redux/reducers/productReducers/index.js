@@ -8,6 +8,8 @@ import {
 import detailsReducers from "../detailsReducers";
 import categoeyReducers from "../productCategory"
 import cartReducers from "../cartReducers"
+import orderReducer from '../orderReducers'
+import filterReducers from "../filterReducer"
 
 export const history = createBrowserHistory();
 
@@ -40,6 +42,8 @@ const rootReducers = combineReducers({
   details: detailsReducers,
   category:categoeyReducers,
   cart:cartReducers,
+  order:orderReducer,
+  filter:filterReducers,
   router: connectRouter(history),
 });
 
