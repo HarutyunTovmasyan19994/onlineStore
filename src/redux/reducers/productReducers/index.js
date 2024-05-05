@@ -10,6 +10,7 @@ import categoeyReducers from "../productCategory"
 import cartReducers from "../cartReducers"
 import orderReducer from '../orderReducers'
 import filterReducers from "../filterReducer"
+import openCloseReducers from "../openCloseReducers"
 
 export const history = createBrowserHistory();
 
@@ -44,6 +45,7 @@ const rootReducers = combineReducers({
   cart:cartReducers,
   order:orderReducer,
   filter:filterReducers,
+  open:openCloseReducers,
   router: connectRouter(history),
 });
 

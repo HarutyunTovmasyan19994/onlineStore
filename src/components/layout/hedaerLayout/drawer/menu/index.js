@@ -1,22 +1,22 @@
 import React from "react";
-import {Layout, Typography, Badge, Dropdown, Button, Space} from "antd";
-import {useDispatch, useSelector} from "react-redux";
-import {DownOutlined, ShoppingCartOutlined,MenuFoldOutlined} from "@ant-design/icons";
+import { Button, Drawer, Typography, Dropdown,Space,Badge } from "antd";
+import {DownOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import { useDispatch,useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {PRODUCT_CATEGORY_CLOTHES} from "../../../redux/reducers/productCategory/action";
-import {PRODUCT_SENT} from "../../../redux/reducers/productReducers/action";
-import {OPEN_CART,OPEN_MENU} from "../../../redux/reducers/openCloseReducers/action"
-import {items} from "./items";
-import DrawerApp from "./drawer";
-import MenuDrawer from "./drawer/menu"
-import "../styles/hedaerLayoutStyle.css";
+import {OPEN_MENU} from "../../../../../redux/reducers/openCloseReducers/action"
+import {PRODUCT_SENT} from "../../../../../redux/reducers/productReducers/action";
+import {PRODUCT_CATEGORY_CLOTHES} from "../../../../../redux/reducers/productCategory/action";
+import { OPEN_CART } from "../../../../../redux/reducers/openCloseReducers/action";
+import {items} from "../../items";
 
-const HeaderLayout = () => {
+
+
+
+const MenuDrawer =()=>{
+    const {openMenu} = useSelector(state=>state.open)
     const {cart} = useSelector(state => state.cart)
+    const dispatch = useDispatch()
     const history = useHistory()
-
-    const dispatch = useDispatch();
-
     const handleMenuClick = (e) => {
         if (e.key === "all") {
             dispatch({type: PRODUCT_SENT});
@@ -46,6 +46,7 @@ const HeaderLayout = () => {
                 dispatch({type: PRODUCT_CATEGORY_CLOTHES, payload: 5});
             }, 250);
         }
+        dispatch({type:OPEN_MENU,payload:false})
     };
       const menuProps = {
         items,
@@ -53,14 +54,19 @@ const HeaderLayout = () => {
     };
     const showDrawer = () => {
         dispatch({type:OPEN_CART,payload:true})
-
+        dispatch({type:OPEN_MENU,payload:false})
     };
-    return (
-        <>
-            <Layout.Header className="headerStyle">
-                <Typography.Title className="titleStyle" level={3}>Online Store</Typography.Title>
-               
-                <div className="paragraph1">
+    const myOrderHandle =()=>{
+        history.push("orderPage/myOrder")
+        dispatch({type:OPEN_MENU,payload:false})
+    }
+    return(
+        <Drawer
+        title="Menu"
+        onClose={()=>dispatch({type:OPEN_MENU,payload:false})}
+        open={openMenu}
+        >
+             <div className="paragraph2">
                     <Typography.Paragraph>
                         <Dropdown menu={menuProps}>
                             <Button className="dropDownStyle">
@@ -71,28 +77,18 @@ const HeaderLayout = () => {
                             </Button>
                         </Dropdown>
                     </Typography.Paragraph>
-                    <Typography.Paragraph className="aboutMeStyle" onClick={()=>history.push("orderPage/myOrder")}>
+                    <Typography.Paragraph className="aboutMeStyle" onClick={myOrderHandle}>
                         My Order
                     </Typography.Paragraph>
                     <Button type="text" className="shoppingCartBox" onClick={showDrawer}
                             disabled={!cart.length}>
-                                
                         <Badge count={cart.length === 0 ? 0 : cart.length} size="small">
                             <ShoppingCartOutlined className="shoppingCart"/>
                         </Badge>
                     </Button>
                 </div>
-                <div className="rightHeader">
-                <Button type="text" className="shoppingCartBox" onClick={()=>dispatch({type:OPEN_MENU,payload:true})}>
-                        Menu <MenuFoldOutlined />
-                    </Button>
-                   
-                </div>
-            </Layout.Header>
-            <DrawerApp />
-            <MenuDrawer/>
-        </>
-    );
-};
+        </Drawer>
+    )
+}
 
-export default HeaderLayout;
+export default MenuDrawer

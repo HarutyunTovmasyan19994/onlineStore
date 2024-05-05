@@ -12,7 +12,8 @@
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
-.paragraph {
+.paragraph1 {
+    
     display: flex;
     justify-content: space-around;
 }
@@ -45,13 +46,14 @@
 }
 
 .shoppingCartBox {
+    text-align: center;
     height: 29px;
     margin-left: 10px;
     margin-top: 10px;
 }
 
 .appContent {
-    width: 10%;
+    /* width: 10%; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -65,6 +67,7 @@
 }
 
 .btnShopping {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -82,7 +85,7 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
-    /* align-items: center; */
+    align-items: center;
 }
 
 .imgBox {
@@ -425,6 +428,12 @@
    justify-content: center;
    align-items: center;
 }
+.maxMiniDiv1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
 .maxMiniDiv input{
     width: 49.99999%;
 }
@@ -432,4 +441,102 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.appCommon{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.flterMenu{
+    padding: 5px 15px;
+    display: none;
+}
+.flterMenu{
+    margin-top: 15px;
+}
+@media only screen and (max-width:765px) {
+    .paragraph1{
+        display: none!important;
+    }
+    .sider{
+        display: none!important;
+    }
+    .cardProducts{
+        width: 150Px!important;
+    }
+    .btnShopping{
+        display: flex;
+        flex-direction: column;
+    }
+    .detailsBtn{
+        margin-bottom: 15px;
+    }
+    .appContent{
+        margin-left: auto!important;
+        margin-right: auto!important;
+    }
+    .flterMenu{
+        display: block;
+    }
+    .modal__content{
+        width: 400px!important;
+    }
+    .dateTime{
+        width: 150px!important;
+    }
+    .cardProducts{
+        width: 300px!important;
+    }
+    .appContent{
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+@media only screen and (min-width:766px){
+    .rightHeader{
+        display: none!important;
+    }
+
+}
+@media only screen and (max-width:375px){
+    .description{
+        font-size: 12px!important;
+    }
+    .detailProduct{
+        font-size: 18px!important;
+    }
+    .detailsCommon{
+        display: flex;
+        flex-direction: column;
+    }
+    .imgBox{
+        width: 100%;
+        padding: 10px;
+    }
+    .modal__content{
+        width: 350px!important;
+        
+    }
+    .commonOrder{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .productOrder{
+        width: 350px;
+        margin: 0 10px;
+    }
+    .productInfo{
+        width: 350px!important;
+        margin: 0 10px;
+    }
+    .cardProducts{
+        width: 350px!important;
+    }
+    .titleStyle{
+        font-size: 18px!important;
+    }
+    .productOrderSuccess{
+        width: 360px!important;
+    }
 }

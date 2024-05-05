@@ -8,10 +8,12 @@ import {
   PRODUCT_CART_TOTAL_PRICE,
   PRODUCT_CART_POPUP,
 } from "../../../../redux/reducers/cartReducers/action";
+import { OPEN_CART } from "../../../../redux/reducers/openCloseReducers/action";
 import { DeleteFilled } from "@ant-design/icons";
 
-const DrawerApp = ({ onClose, open }) => {
+const DrawerApp = ( ) => {
   const { cart, totalCount } = useSelector((state) => state.cart);
+  const {openCart} = useSelector((state)=>state.open)
   const dispatch = useDispatch();
 
   const incrementHandle = (id, text) => {
@@ -32,7 +34,7 @@ const DrawerApp = ({ onClose, open }) => {
 
   const handleBtn =()=>{
     dispatch({type:PRODUCT_CART_POPUP,payload:true})
-    onClose()
+    dispatch({type:OPEN_CART,payload:false})
 
   }
 
@@ -43,15 +45,15 @@ const DrawerApp = ({ onClose, open }) => {
       }
     })
     if(cart.length === 0){
-    onClose()
+      dispatch({type:OPEN_CART,payload:false})
   }
   }, [cart])
 
   return (
     <Drawer
       title="Cart Products"
-      onClose={onClose}
-      open={open}
+      onClose={()=>dispatch({type:OPEN_CART,payload:false})}
+      open={openCart}
       className="drawerApp"
     >
       {cart.map((items) => (

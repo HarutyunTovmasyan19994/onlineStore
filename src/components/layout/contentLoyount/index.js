@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Layout, Typography, Button, Divider, Form, Input, InputNumber, DatePicker} from "antd"
 import {useDispatch, useSelector} from "react-redux";
-import {ShoppingCartOutlined} from "@ant-design/icons";
+import {ShoppingCartOutlined,FilterOutlined} from "@ant-design/icons";
 import AppCarousel from "./carusel";
 import Modal from "../../popup/index"
 import {Link, useHistory} from "react-router-dom";
@@ -10,7 +10,9 @@ import {
     PRODUCT_CART_DELIVERY,
     PRODUCT_CART_POPUP
 } from "../../../redux/reducers/cartReducers/action"
+import {OPEN_FILTER} from "../../../redux/reducers/openCloseReducers/action"
 import {PRODUCT_CART_TOTAL_PRICE} from "../../../redux/reducers/cartReducers/action"
+import FiliterDrawer from "../contentLoyount/filterDrawer"
 import "../styles/hedaerLayoutStyle.css"
 
 const AppContent = () => {
@@ -54,7 +56,14 @@ const AppContent = () => {
     }
 
     return (
+        <div className="appCommon"> 
+        <div className="flterMenu">
+            <Button type="primary" onClick={()=>dispatch({type:OPEN_FILTER,payload:true})}>
+                Filter <FilterOutlined style={{margin:3}}/>
+            </Button>
+        </div>
         <Layout.Content className="appContent">
+            
             {
                 product.map(products => (
                     <Card
@@ -75,7 +84,7 @@ const AppContent = () => {
                         <Divider dashed/>
                         <div className="btnShopping">
                             <Link to={`/${products.id}`}>
-                                <Button type="dashed">
+                                <Button type="dashed" className="detailsBtn">
                                     See Details
                                 </Button>
                             </Link>
@@ -118,8 +127,8 @@ const AppContent = () => {
                     <Form.Item label="Address" name="address">
                         <Input/>
                     </Form.Item>
-                    <Form.Item name="date-time-picker" label="Date " {...config}>
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm:ss"/>
+                    <Form.Item name="date-time-picker" label="Date " {...config} >
+                        <DatePicker  format="YYYY-MM-DD " className="dateTime"/>
                     </Form.Item>
 
                     <Form.Item
@@ -136,6 +145,8 @@ const AppContent = () => {
             </Modal>
 
         </Layout.Content>
+        <FiliterDrawer/>
+        </div>
     )
 }
 

@@ -26,7 +26,7 @@ const OrderPage = () => {
         <>
        <div className="headerDetails">
            <div className="btnBox">
-               <Button type="link">
+               <Button type="link" onClick={()=>history.push("/")}>
                    <ArrowLeftOutlined/>
                    Back
                </Button>

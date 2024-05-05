@@ -25,7 +25,7 @@ const Details = () => {
                     </Link>
                 </div>
                 <div className="DetailsProduct">
-                    <Typography.Title level={3}>Detail Product</Typography.Title>
+                    <Typography.Title level={3} className="detailProduct">Detail Product</Typography.Title>
                 </div>
 
             </div>
@@ -41,7 +41,7 @@ const Details = () => {
                         <Typography.Title level={4}>
                             {details.details.title}
                         </Typography.Title>
-                        <Typography.Paragraph>
+                        <Typography.Paragraph className="description">
                             Description:{' '}
                             {details.details.description}
                         </Typography.Paragraph>
