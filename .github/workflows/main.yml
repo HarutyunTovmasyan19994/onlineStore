@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [18.x]
     steps:
       - uses: actions/chechout@v3
       - name: Staring Node.js ${{matrix.node-version}}
