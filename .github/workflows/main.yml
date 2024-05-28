@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{matrix.node-version}}
@@ -15,4 +15,4 @@ jobs:
       - name: install modules
         run: npm install --legacy-peer-deps
       - name: build project 
-        run: npm run build  --legacy-peer-deps
+        run: npm run build  
