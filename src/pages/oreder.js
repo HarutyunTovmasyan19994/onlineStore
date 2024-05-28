@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import {useSelector,useDispatch} from "react-redux";
 import {ArrowLeftOutlined,ShoppingOutlined} from "@ant-design/icons";
