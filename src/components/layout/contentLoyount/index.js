@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import {Card, Layout, Typography, Button, Divider, Form, Input, InputNumber, DatePicker} from "antd"
 import {useDispatch, useSelector} from "react-redux";

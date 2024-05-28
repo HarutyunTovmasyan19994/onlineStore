@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React,{useState} from "react";
 import { useSelector } from "react-redux";

@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect } from "react";
 import { Button, Drawer, Typography, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +49,7 @@ const DrawerApp = ( ) => {
     if(cart.length === 0){
       dispatch({type:OPEN_CART,payload:false})
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
 
   return (
