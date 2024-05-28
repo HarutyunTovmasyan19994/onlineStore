@@ -11,11 +11,10 @@ import "../components/layout/styles/hedaerLayoutStyle.css"
 
 const OrderPage = () => {
     const {delivery, totalCount} = useSelector((state) => state.cart)
-    const [deliveryAmount, setDeliveryAmount] = useState(100)
     const dispatch = useDispatch();
     const history = useHistory()
   
-
+    const deliveryAmount = 100
     
     const buyHandle =()=>{
         dispatch({type:ORDER_PRUDUCTS,payload:delivery.cart})
