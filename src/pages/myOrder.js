@@ -7,8 +7,8 @@ import {Typography, Button} from "antd"
 
 const myOrder = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [todoPage, setTodoPage] = useState(5)
   const {order} = useSelector(state => state.order)
+  const todoPage = 5
   const history = useHistory()
   const pagination = []
   const TodoListLength = order.length
